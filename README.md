@@ -1,4 +1,4 @@
-# FubolAraucania-App
+# Software Veterinaria
 
 Integrantes:
 
