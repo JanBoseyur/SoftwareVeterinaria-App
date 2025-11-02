@@ -42,6 +42,19 @@ export class PrismaUserRepository implements UserRepository {
       : null;
   }
 
+  async findById(id: string): Promise<User | null> {
+    const u = await prisma.user.findUnique({ where: { id } });
+    if (!u) return null;
+
+    return new User({
+      id: u.id,
+      email: u.email,
+      passwordHash: u.passwordHash,
+      role: u.role as any,
+      createdAt: u.createdAt,
+    });
+  }
+
   /**
    * Crea un nuevo usuario en la base de datos.
    * @param data Objeto con id, email, passwordHash, rol (opcional) y fecha de creación.
